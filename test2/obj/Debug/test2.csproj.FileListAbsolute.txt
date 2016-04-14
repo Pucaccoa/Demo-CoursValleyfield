@@ -38,3 +38,7 @@ D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\bin\Newtonsoft.Json.xml
 D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\obj\Debug\test2.csprojResolveAssemblyReference.cache
 D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\obj\Debug\test2.dll
 D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\obj\Debug\test2.pdb
+D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\bin\EntityFramework.dll
+D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\bin\EntityFramework.SqlServer.dll
+D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\bin\EntityFramework.xml
+D:\Users\1476549\Documents\Demo-CoursValleyfield\test2\bin\EntityFramework.SqlServer.xml
