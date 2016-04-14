@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -23,7 +24,7 @@ namespace test2.Controllers
         [HttpPost]
         public ActionResult Index(string productname)
         {
-            var searchedProducts = db.Products.Where(b => b.ProductName.Contains(productname)).Include(p=>p.Categories).Include(p=>p.Suppliers);
+            var searchedProducts = db.Products.Where(b => b.ProductName.Contains(productname)).Include(p => p.Categories).Include(p => p.Suppliers);
 
             Console.WriteLine("fait rien");
             return View(searchedProducts);
@@ -61,15 +62,28 @@ namespace test2.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (Request.Files.Count > 0)
+                {
+                    var file = Request.Files[0];
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(file.FileName);
+                        var fileExtension = Path.GetExtension(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/App_Data/images"), fileName);
+                        file.SaveAs(path);
+                        products.photo = fileName;
+                    }
+                }
+                
                 db.Products.Add(products);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", products.CategoryID);
-            ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName", products.SupplierID);
-            return View(products);
-        }
+                ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", products.CategoryID);
+                ViewBag.SupplierID = new SelectList(db.Suppliers, "SupplierID", "CompanyName", products.SupplierID);
+                return View(products);
+            }
 
         // GET: Products1/Edit/5
         public ActionResult Edit(int? id)
