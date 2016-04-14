@@ -5,10 +5,10 @@
 }
 
 <h2>Index</h2>
-@using (Html.BeginForm("Products1", "Index", FormMethod.Post))
+@using (Html.BeginForm("Index", "Products1", FormMethod.Post))
 {
     <input type="text" name="productname">
-    <input type="button" name="boutton"value="Rechercher"/>
+    <input type="submit" name="boutton"value="Rechercher"/>
 }
 <p>
     @Html.ActionLink("Create New", "Create")

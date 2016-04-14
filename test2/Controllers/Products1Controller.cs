@@ -20,6 +20,12 @@ namespace test2.Controllers
             var products = db.Products.Include(p => p.Categories).Include(p => p.Suppliers);
             return View(products.ToList());
         }
+        [HttpPost]
+        public ActionResult Index(string productname)
+        {
+            var searchedProducts = db.Products.Where(b => b.ProductName.Contains(productname)).Include(p=>p.Categories).Include(p=>p.Suppliers);
+            return View(searchedProducts);
+        }
 
         // GET: Products1/Details/5
         public ActionResult Details(int? id)
