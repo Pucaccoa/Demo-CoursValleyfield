@@ -24,6 +24,8 @@ namespace test2.Controllers
         public ActionResult Index(string productname)
         {
             var searchedProducts = db.Products.Where(b => b.ProductName.Contains(productname)).Include(p=>p.Categories).Include(p=>p.Suppliers);
+
+            Console.WriteLine("fait rien");
             return View(searchedProducts);
         }
 
